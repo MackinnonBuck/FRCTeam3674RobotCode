@@ -16,8 +16,10 @@ public class DriveFromJoysticks extends Command {
     
     protected void execute() {
     	// NOTE: The raw axis values below may be erroneous. Test with caution.
-    	Robot.driveSystem.robotDrive.mecanumDrive_Cartesian(OI.stick1.getRawAxis(2),
-    			OI.stick1.getRawAxis(3), OI.stick1.getRawAxis(4), 0);
+    	Robot.driveSystem.setSpeedX(OI.stick1.getRawAxis(2));
+    	Robot.driveSystem.setSpeedY(OI.stick1.getRawAxis(1));
+    	Robot.driveSystem.setSpeedZ(OI.stick1.getRawAxis(4));
+    	Robot.driveSystem.drive();
     }
     
     protected boolean isFinished() {
