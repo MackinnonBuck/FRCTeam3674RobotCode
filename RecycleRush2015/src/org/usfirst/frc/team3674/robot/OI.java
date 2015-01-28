@@ -5,8 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class OI {
 	
 	public static Joystick stick1 = new Joystick(1);
-	
-	// Le'ts see if this appears in the fetch of the commit thing...
+	public static Joystick controller = new Joystick(2);
 	
 }
 

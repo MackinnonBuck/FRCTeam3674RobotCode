@@ -6,6 +6,7 @@ import org.usfirst.frc.team3674.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveFromJoysticks extends Command {
+	
 
     public DriveFromJoysticks() {
         requires(Robot.driveSystem);
@@ -23,7 +24,7 @@ public class DriveFromJoysticks extends Command {
     }
     
     protected boolean isFinished() {
-        return false;
+        	return false;
     }
     
     protected void end() {
