@@ -1,13 +1,12 @@
 package org.usfirst.frc.team3674.robot.commands;
 
-import org.usfirst.frc.team3674.robot.OI;
 import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LiftFromInput extends Command {
+public class LiftClips extends Command {
 
-    public LiftFromInput() {
+    public LiftClips() {
         requires(Robot.liftMechanism);
     }
     
@@ -15,13 +14,6 @@ public class LiftFromInput extends Command {
     }
     
     protected void execute() {
-    	if (OI.leftTrigger.get()) {
-    		Robot.liftMechanism.setSpeed(-1.0);
-    	} else if (OI.rightTrigger.get()) {
-    		Robot.liftMechanism.setSpeed(1.0);
-    	} else {
-    		Robot.liftMechanism.setSpeed(0.0);
-    	}
     }
     
     protected boolean isFinished() {
