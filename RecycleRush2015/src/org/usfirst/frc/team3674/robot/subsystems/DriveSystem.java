@@ -2,6 +2,7 @@ package org.usfirst.frc.team3674.robot.subsystems;
 
 import org.usfirst.frc.team3674.robot.RobotMap;
 import org.usfirst.frc.team3674.robot.commands.DriveFromJoysticks;
+import org.usfirst.frc.team3674.robot.triggers.LeftTrigger;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;

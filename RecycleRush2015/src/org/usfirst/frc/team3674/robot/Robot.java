@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3674.robot;
 
 import org.usfirst.frc.team3674.robot.subsystems.DriveSystem;
+import org.usfirst.frc.team3674.robot.subsystems.LiftMechanism;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,11 +13,13 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveSystem driveSystem;
+	public static LiftMechanism liftMechanism;
 
     Command autonomousCommand;
     
     public void robotInit() {
     	driveSystem = new DriveSystem();
+    	liftMechanism = new LiftMechanism();
 		oi = new OI();
         //autonomousCommand = ...
     }
