@@ -4,16 +4,18 @@ import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LowerClips extends Command {
+public class MaintainClipPosition extends Command {
 
-    public LowerClips() {
+    public MaintainClipPosition() {
         requires(Robot.liftMechanism);
     }
 
     protected void initialize() {
+    	
     }
 
     protected void execute() {
+    	// TODO: Code the balancing system.
     }
 
     protected boolean isFinished() {
