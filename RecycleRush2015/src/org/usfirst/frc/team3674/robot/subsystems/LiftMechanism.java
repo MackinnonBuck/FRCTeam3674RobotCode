@@ -18,7 +18,7 @@ public class LiftMechanism extends Subsystem {
 
 	public LiftMechanism() {
 		liftTalon = new Talon(RobotMap.liftTalonPort);
-    	liftEncoder = new Encoder(RobotMap.encoderPort1, RobotMap.encoderPort2);
+    	liftEncoder = new Encoder(RobotMap.liftEncoderPort1, RobotMap.liftEncoderPort2);
 		liftTalon.set(0.0);
 		targetSpeed = 0;
 		threshold = 0;
@@ -60,14 +60,14 @@ public class LiftMechanism extends Subsystem {
 		this.threeTotes = threeTotes;
 	}
 	
-    /*public void setTargetPosition(int targetPosition) {
+    public void setTargetPosition(int targetPosition) {
     	// Insert code here. Any existing code below is a placeholder.
     }
     
     public int getStartingPosition() {
     	// Insert code here. Any existing code below is a placeholder.
     	return 0;
-    }*/
+    }
     
     public int getAngle() {
     	return liftEncoder.getRaw();
