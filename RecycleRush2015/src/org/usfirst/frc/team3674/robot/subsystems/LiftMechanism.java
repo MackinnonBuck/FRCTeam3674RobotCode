@@ -14,7 +14,7 @@ public class LiftMechanism extends Subsystem {
 	private double targetSpeed;
 	private double threshold;
 	private double threeTotes;
-	
+	private int targetPosition;
 
 	public LiftMechanism() {
 		liftTalon = new Talon(RobotMap.liftTalonPort);
@@ -22,6 +22,7 @@ public class LiftMechanism extends Subsystem {
 		liftTalon.set(0.0);
 		targetSpeed = 0;
 		threshold = 0;
+		targetPosition = 0;
 	}
 
     public void initDefaultCommand() {
@@ -61,7 +62,11 @@ public class LiftMechanism extends Subsystem {
 	}
 	
     public void setTargetPosition(int targetPosition) {
-    	// Insert code here. Any existing code below is a placeholder.
+    	this.targetPosition = targetPosition;
+    }
+    
+    public int getTargetPosition() {
+    	return targetPosition;
     }
     
     public int getStartingPosition() {
@@ -69,7 +74,7 @@ public class LiftMechanism extends Subsystem {
     	return 0;
     }
     
-    public int getAngle() {
+    public int getPosition() {
     	return liftEncoder.getRaw();
     }
     

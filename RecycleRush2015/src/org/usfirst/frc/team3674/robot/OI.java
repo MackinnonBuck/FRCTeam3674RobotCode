@@ -19,5 +19,5 @@ public class OI {
 		leftTrigger = new LeftTrigger();
 		rightTrigger = new RightTrigger();
 	}
+	
 }
-
