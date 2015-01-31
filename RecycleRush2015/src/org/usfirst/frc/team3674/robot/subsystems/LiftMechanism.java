@@ -12,12 +12,15 @@ public class LiftMechanism extends Subsystem {
 	private Talon liftTalon;
 	private Encoder liftEncoder;
 	private int targetSpeed;
+	private double threshold;
 	
+
 	public LiftMechanism() {
 		liftTalon = new Talon(RobotMap.liftTalonPort);
     	liftEncoder = new Encoder(RobotMap.encoderPort1, RobotMap.encoderPort2);
 		liftTalon.set(0.0);
 		targetSpeed = 0;
+		threshold = 0;
 	}
 
     public void initDefaultCommand() {
@@ -39,6 +42,11 @@ public class LiftMechanism extends Subsystem {
     public double getTargetSpeed() {
     	return targetSpeed;
     }
+    
+	public double getThreshold() {
+		return threshold;
+	}
+    
     
     /*public void setTargetPosition(int targetPosition) {
     	// Insert code here. Any existing code below is a placeholder.
