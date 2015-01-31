@@ -4,6 +4,7 @@ import org.usfirst.frc.team3674.robot.RobotMap;
 import org.usfirst.frc.team3674.robot.commands.DriveFromJoysticks;
 import org.usfirst.frc.team3674.robot.triggers.LeftTrigger;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -11,6 +12,9 @@ public class DriveSystem extends Subsystem {
 	
 	private RobotDrive robotDrive;
 	private double speedX, speedY, speedZ;
+	public Encoder motorEncoderRight;
+	public Encoder motorEncoderLeft;
+	public double begginningDistance;
 	
 	public DriveSystem() {
 		robotDrive = new RobotDrive(RobotMap.frontLeftMotor, RobotMap.rearLeftMotor,
@@ -18,6 +22,10 @@ public class DriveSystem extends Subsystem {
 		speedX = 0.0;
 		speedY = 0.0;
 		speedZ = 0.0;
+		
+		motorEncoderRight = new Encoder(RobotMap.motorEncoderPort1, RobotMap.motorEncoderPort2);
+		motorEncoderLeft = new Encoder(RobotMap.motorEncoderPort3, RobotMap.motorEncoderPort4);
+		begginningDistance = 0;
 	}
 
     public void initDefaultCommand() {

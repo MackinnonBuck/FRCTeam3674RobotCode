@@ -23,7 +23,7 @@ public class AutonomousCommand extends CommandGroup {
 		addSequential //turn left
 		addSequential //back-up some distance
 		addSequential //set down totes
-		addSequential //strafe away5
+		addSequential //strafe away
 		
 	}
 }

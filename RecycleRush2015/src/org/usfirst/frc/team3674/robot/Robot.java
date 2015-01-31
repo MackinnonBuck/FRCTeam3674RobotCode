@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team3674.robot;
 
+import org.usfirst.frc.team3674.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team3674.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team3674.robot.subsystems.LiftMechanism;
 
@@ -14,14 +15,13 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveSystem driveSystem;
 	public static LiftMechanism liftMechanism;
-
-    Command autonomousCommand;
+	private static Command autonomousCommand;
     
     public void robotInit() {
     	driveSystem = new DriveSystem();
     	liftMechanism = new LiftMechanism();
 		oi = new OI();
-        //autonomousCommand = ...
+        autonomousCommand = new AutonomousCommand();
     }
 	
 	public void disabledPeriodic() {
