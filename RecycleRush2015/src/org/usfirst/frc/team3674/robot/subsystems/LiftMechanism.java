@@ -11,7 +11,7 @@ public class LiftMechanism extends Subsystem {
 	
 	private Talon liftTalon;
 	private Encoder liftEncoder;
-	private int targetSpeed;
+	private double targetSpeed;
 	private double threshold;
 	
 
@@ -41,6 +41,10 @@ public class LiftMechanism extends Subsystem {
     
     public double getTargetSpeed() {
     	return targetSpeed;
+    }
+    
+    public void setTargetSpeed(double targetSpeed) {
+    	this.targetSpeed = targetSpeed;
     }
     
 	public double getThreshold() {
