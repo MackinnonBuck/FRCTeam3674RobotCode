@@ -13,6 +13,7 @@ public class LiftMechanism extends Subsystem {
 	private Encoder liftEncoder;
 	private double targetSpeed;
 	private double threshold;
+	private double threeTotes;
 	
 
 	public LiftMechanism() {
@@ -51,7 +52,14 @@ public class LiftMechanism extends Subsystem {
 		return threshold;
 	}
     
-    
+	public double getThreeTotes() {
+		return threeTotes;
+	}
+
+	public void setThreeTotes(double threeTotes) {
+		this.threeTotes = threeTotes;
+	}
+	
     /*public void setTargetPosition(int targetPosition) {
     	// Insert code here. Any existing code below is a placeholder.
     }
