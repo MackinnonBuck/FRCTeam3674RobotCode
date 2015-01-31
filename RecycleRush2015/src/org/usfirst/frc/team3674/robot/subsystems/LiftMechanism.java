@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3674.robot.subsystems;
 
 import org.usfirst.frc.team3674.robot.RobotMap;
-import org.usfirst.frc.team3674.robot.commands.MaintainClipPosition;
+import org.usfirst.frc.team3674.robot.commands.LiftFromInput;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
@@ -24,7 +24,7 @@ public class LiftMechanism extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-    	setDefaultCommand(new MaintainClipPosition());
+    	setDefaultCommand(new LiftFromInput());
     }
         
     public void setPower(double power) {

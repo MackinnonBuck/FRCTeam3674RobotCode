@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3674.robot;
 
-import org.usfirst.frc.team3674.robot.commands.LiftClips;
 import org.usfirst.frc.team3674.robot.triggers.LeftTrigger;
 import org.usfirst.frc.team3674.robot.triggers.RightTrigger;
 
@@ -19,8 +18,6 @@ public class OI {
 		stick2 = new Joystick(2);
 		leftTrigger = new LeftTrigger();
 		rightTrigger = new RightTrigger();
-		rightTrigger.whenActive(new LiftClips());
-		//leftTrigger.whenActive(new SetLiftMechanismTargetPosition(Robot.liftMechanism.getStartingPosition()));
 	}
 }
 
