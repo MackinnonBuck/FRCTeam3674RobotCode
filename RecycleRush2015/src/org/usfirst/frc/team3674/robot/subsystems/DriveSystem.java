@@ -2,7 +2,6 @@ package org.usfirst.frc.team3674.robot.subsystems;
 
 import org.usfirst.frc.team3674.robot.RobotMap;
 import org.usfirst.frc.team3674.robot.commands.DriveFromJoysticks;
-import org.usfirst.frc.team3674.robot.triggers.LeftTrigger;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -12,9 +11,10 @@ public class DriveSystem extends Subsystem {
 	
 	private RobotDrive robotDrive;
 	private double speedX, speedY, speedZ;
-	public Encoder motorEncoderRight;
-	public Encoder motorEncoderLeft;
-	public double begginningDistance;
+	private Encoder motorEncoderFront;
+	private Encoder motorEncoderRear;
+	private double xDistanceTraveled;
+	private double yDistanceTraveled;
 	
 	public DriveSystem() {
 		robotDrive = new RobotDrive(RobotMap.frontLeftMotor, RobotMap.rearLeftMotor,
@@ -23,9 +23,10 @@ public class DriveSystem extends Subsystem {
 		speedY = 0.0;
 		speedZ = 0.0;
 		
-		motorEncoderRight = new Encoder(RobotMap.motorEncoderPort1, RobotMap.motorEncoderPort2);
-		motorEncoderLeft = new Encoder(RobotMap.motorEncoderPort3, RobotMap.motorEncoderPort4);
-		begginningDistance = 0;
+		motorEncoderFront = new Encoder(RobotMap.motorEncoderPort1, RobotMap.motorEncoderPort2);
+		motorEncoderRear = new Encoder(RobotMap.motorEncoderPort3, RobotMap.motorEncoderPort4);
+		xDistanceTraveled = 0.0;
+		yDistanceTraveled = 0.0;
 	}
 
     public void initDefaultCommand() {
@@ -59,6 +60,30 @@ public class DriveSystem extends Subsystem {
 	public void setSpeedZ(double speedZ) {
 		this.speedZ = speedZ;
 	}
+	
+	public int getFrontPosition() {
+		return motorEncoderFront.getRaw();
+	}
+	
+	public int getRearPosition() {
+		return motorEncoderRear.getRaw();
+	}
     
+	public void setXDistanceTraveled(double xDistanceTraveled) {
+		this.xDistanceTraveled = xDistanceTraveled;
+	}
+	
+	public double getXDistanceTraveled() {
+		return xDistanceTraveled;
+	}
+	
+	public void setYDistanceTraveled(double yDistanceTraveled) {
+		this.yDistanceTraveled = yDistanceTraveled;
+	}
+	
+	public double getYDistanceTraveled() {
+		return yDistanceTraveled;
+	}
+	
 }
 
