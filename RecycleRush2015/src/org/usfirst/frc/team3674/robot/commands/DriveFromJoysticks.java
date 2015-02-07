@@ -25,13 +25,25 @@ public class DriveFromJoysticks extends Command {
     }
     
     protected void execute() {
-    	leftStickX = Math.max(Math.min(leftStickX + OI.stick1.getRawAxis(0) / accelRate, 1.0), -1.0);
-    	leftStickY = Math.max(Math.min(leftStickY + OI.stick1.getRawAxis(1) / accelRate, 1.0), -1.0);
-    	rightStickX = Math.max(Math.min(rightStickX + OI.stick1.getRawAxis(4) / accelRate, 1.0), -1.0);
+    	if (OI.stick1.getRawButton(5)) {
+	    	leftStickX = Math.max(Math.min(leftStickX + OI.stick1.getRawAxis(0) / accelRate, 1.0), -1.0);
+	    	leftStickY = Math.max(Math.min(leftStickY + OI.stick1.getRawAxis(1) / accelRate, 1.0), -1.0);
+	    	rightStickX = Math.max(Math.min(rightStickX + OI.stick1.getRawAxis(4) / accelRate, 1.0), -1.0);
+    	} else {
+    		leftStickX = OI.stick1.getRawAxis(0);
+    		leftStickY = OI.stick1.getRawAxis(1);
+    		rightStickX = OI.stick1.getRawAxis(4);
+    	}
     	
-    	Robot.driveSystem.setSpeedX(leftStickX);
-    	Robot.driveSystem.setSpeedY(leftStickY);
-    	Robot.driveSystem.setSpeedZ(rightStickX);
+    	if (OI.stick1.getRawButton(6)) {
+	    	Robot.driveSystem.setSpeedX(Math.max(Math.min(leftStickX, 0.25), -0.25));
+	    	Robot.driveSystem.setSpeedY(Math.max(Math.min(leftStickY, 0.25), -0.25));
+	    	Robot.driveSystem.setSpeedZ(Math.max(Math.min(rightStickX, 0.25), -0.25));
+    	} else {
+    		Robot.driveSystem.setSpeedX(leftStickX);
+	    	Robot.driveSystem.setSpeedY(leftStickY);
+	    	Robot.driveSystem.setSpeedZ(rightStickX);
+    	}
     	Robot.driveSystem.drive();
     	
     	SmartDashboard.putNumber("Left Joystick X:", leftStickX);
