@@ -8,27 +8,32 @@ public class DriveFromPresets extends Command {
 	
 	private double xDist;
 	private double yDist;
-	private double frontTargetAngle;
-	private double rearTargetAngle;
+	private double frontStartingPosition;
+	private double rearStartingPosition;
+	private double frontTargetPosition;
+	private double rearTargetPosition;
 	
     public DriveFromPresets(double power, double xDist, double yDist) {
         requires(Robot.driveSystem);
         this.xDist = xDist;
         this.yDist = yDist;
-        frontTargetAngle = 0.0;
-        rearTargetAngle = 0.0;
+        frontStartingPosition = Robot.driveSystem.getFrontPosition();
+        rearStartingPosition = Robot.driveSystem.getRearPosition();
+        frontTargetPosition = 0.0;
+        rearTargetPosition = 0.0;
     }
 
     protected void initialize() {
-    	Robot.driveSystem.setXDistanceTraveled(0.0);
-    	Robot.driveSystem.setYDistanceTraveled(0.0);
-    	
-    	frontTargetAngle = (yDist / (6.0 * Math.PI)) + (xDist / (6.0 * Math.PI) / 2.0);
-    	rearTargetAngle = (yDist / (6.0 * Math.PI)) - (xDist / (6.0 * Math.PI) / 2.0);
+    	frontTargetPosition = (yDist / (6.0 * Math.PI)) + (xDist / (6.0 * Math.PI) / 2.0);
+    	rearTargetPosition = (yDist / (6.0 * Math.PI)) - (xDist / (6.0 * Math.PI) / 2.0);
     }
 
     protected void execute() {
+    	Robot.driveSystem.setFrontLeftTalonPower(frontTargetPosition - frontStartingPosition - Robot.driveSystem.getFrontPosition());
+    	Robot.driveSystem.setFrontRightTalonPower(Robot.driveSystem.getFrontLeftTalonPower());
     	
+    	Robot.driveSystem.setRearLeftTalonPower(rearTargetPosition - rearStartingPosition - Robot.driveSystem.getRearPosition());
+    	Robot.driveSystem.setRearRightTalonPower(Robot.driveSystem.getRearLeftTalonPower());
     }
 
     protected boolean isFinished() {

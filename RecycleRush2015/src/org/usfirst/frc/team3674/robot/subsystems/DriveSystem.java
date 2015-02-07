@@ -5,28 +5,34 @@ import org.usfirst.frc.team3674.robot.commands.DriveFromJoysticks;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveSystem extends Subsystem {
 	
+	private Talon frontLeftTalon;
+	private Talon rearLeftTalon;
+	private Talon frontRightTalon;
+	private Talon rearRightTalon;
 	private RobotDrive robotDrive;
 	private double speedX, speedY, speedZ;
 	private Encoder motorEncoderFront;
 	private Encoder motorEncoderRear;
-	private double xDistanceTraveled;
-	private double yDistanceTraveled;
 	
 	public DriveSystem() {
-		robotDrive = new RobotDrive(RobotMap.frontLeftMotor, RobotMap.rearLeftMotor,
-				RobotMap.frontRightMotor, RobotMap.rearRightMotor);
+		frontLeftTalon = new Talon(RobotMap.frontLeftMotor);
+		rearLeftTalon = new Talon(RobotMap.rearLeftMotor);
+		frontRightTalon = new Talon(RobotMap.frontRightMotor);
+		rearRightTalon = new Talon(RobotMap.rearRightMotor);
+		robotDrive = new RobotDrive(frontLeftTalon, rearLeftTalon,
+				frontRightTalon, rearRightTalon);
+		
 		speedX = 0.0;
 		speedY = 0.0;
 		speedZ = 0.0;
 		
 		motorEncoderFront = new Encoder(RobotMap.motorEncoderPort1, RobotMap.motorEncoderPort2);
 		motorEncoderRear = new Encoder(RobotMap.motorEncoderPort3, RobotMap.motorEncoderPort4);
-		xDistanceTraveled = 0.0;
-		yDistanceTraveled = 0.0;
 	}
 
     public void initDefaultCommand() {
@@ -68,21 +74,37 @@ public class DriveSystem extends Subsystem {
 	public int getRearPosition() {
 		return motorEncoderRear.getRaw();
 	}
-    
-	public void setXDistanceTraveled(double xDistanceTraveled) {
-		this.xDistanceTraveled = xDistanceTraveled;
+
+	public double getFrontLeftTalonPower() {
+		return frontLeftTalon.get();
 	}
-	
-	public double getXDistanceTraveled() {
-		return xDistanceTraveled;
+
+	public void setFrontLeftTalonPower(double power) {
+		frontLeftTalon.set(power);
 	}
-	
-	public void setYDistanceTraveled(double yDistanceTraveled) {
-		this.yDistanceTraveled = yDistanceTraveled;
+
+	public double getRearLeftTalonPower() {
+		return rearLeftTalon.get();
 	}
-	
-	public double getYDistanceTraveled() {
-		return yDistanceTraveled;
+
+	public void setRearLeftTalonPower(double power) {
+		rearLeftTalon.set(power);
+	}
+
+	public double getFrontRightTalonPower() {
+		return frontRightTalon.get();
+	}
+
+	public void setFrontRightTalonPower(double power) {
+		frontRightTalon.set(power);
+	}
+
+	public double getRearRightTalonPower() {
+		return rearRightTalon.get();
+	}
+
+	public void setRearRightTalonPower(double power) {
+		rearRightTalon.set(power);
 	}
 	
 }

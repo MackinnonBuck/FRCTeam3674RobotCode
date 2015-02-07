@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3674.robot;
 
 import org.usfirst.frc.team3674.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team3674.robot.subsystems.CollectionSystem;
 import org.usfirst.frc.team3674.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team3674.robot.subsystems.LiftMechanism;
 
@@ -15,6 +16,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveSystem driveSystem;
 	public static LiftMechanism liftMechanism;
+	public static CollectionSystem collectionSystem;
 	private static Command autonomousCommand;
     
     public void robotInit() {
