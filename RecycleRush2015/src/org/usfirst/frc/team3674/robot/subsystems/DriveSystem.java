@@ -5,6 +5,7 @@ import org.usfirst.frc.team3674.robot.commands.DriveFromJoysticks;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -26,6 +27,8 @@ public class DriveSystem extends Subsystem {
 		rearRightTalon = new Talon(RobotMap.rearRightMotor);
 		robotDrive = new RobotDrive(frontLeftTalon, rearLeftTalon,
 				frontRightTalon, rearRightTalon);
+		robotDrive.setInvertedMotor(MotorType.kFrontRight, true);
+		robotDrive.setInvertedMotor(MotorType.kRearRight, true);
 		
 		speedX = 0.0;
 		speedY = 0.0;

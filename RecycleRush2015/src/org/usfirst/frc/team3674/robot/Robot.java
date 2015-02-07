@@ -22,6 +22,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	driveSystem = new DriveSystem();
     	liftMechanism = new LiftMechanism();
+    	collectionSystem = new CollectionSystem();
 		oi = new OI();
         autonomousCommand = new AutonomousCommand();
     }

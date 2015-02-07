@@ -29,10 +29,10 @@ public class DriveFromPresets extends Command {
     }
 
     protected void execute() {
-    	Robot.driveSystem.setFrontLeftTalonPower(frontTargetPosition - frontStartingPosition - Robot.driveSystem.getFrontPosition());
+    	Robot.driveSystem.setFrontLeftTalonPower(Robot.driveSystem.getFrontPosition() - (frontTargetPosition - frontStartingPosition));
     	Robot.driveSystem.setFrontRightTalonPower(Robot.driveSystem.getFrontLeftTalonPower());
     	
-    	Robot.driveSystem.setRearLeftTalonPower(rearTargetPosition - rearStartingPosition - Robot.driveSystem.getRearPosition());
+    	Robot.driveSystem.setRearLeftTalonPower(Robot.driveSystem.getRearPosition() - (rearTargetPosition - rearStartingPosition));
     	Robot.driveSystem.setRearRightTalonPower(Robot.driveSystem.getRearLeftTalonPower());
     }
 

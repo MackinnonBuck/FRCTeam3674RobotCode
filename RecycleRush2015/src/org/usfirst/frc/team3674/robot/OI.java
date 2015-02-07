@@ -21,8 +21,8 @@ public class OI {
 	public static Button stick2_rb;
 	
 	public OI() {
-		stick1 = new Joystick(1);
-		stick2 = new Joystick(2);
+		stick1 = new Joystick(0);
+		stick2 = new Joystick(1);
 		leftTrigger = new LeftTrigger();
 		rightTrigger = new RightTrigger();
 		stick2_lb = new JoystickButton(stick2, 5);
