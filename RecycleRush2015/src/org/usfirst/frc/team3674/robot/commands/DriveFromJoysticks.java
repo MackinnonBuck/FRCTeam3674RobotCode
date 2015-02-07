@@ -11,28 +11,40 @@ public class DriveFromJoysticks extends Command {
 	private double leftStickX;
 	private double leftStickY;
 	private double rightStickX;
+	private double rawLeftStickX;
+	private double rawLeftStickY;
+	private double rawRightStickX;
 	private double accelRate;
+	private double deadZone;
 	
     public DriveFromJoysticks() {
         requires(Robot.driveSystem);
         leftStickX = 0.0;
         leftStickY = 0.0;
         rightStickX = 0.0;
-        accelRate = 25.0;
+        rawLeftStickX = 0.0;
+        rawLeftStickY = 0.0;
+        rawRightStickX = 0.0;
+        accelRate = 0.05;
+        deadZone = 0.1;
     }
     
     protected void initialize() {
     }
     
     protected void execute() {
+    	rawLeftStickX = Math.abs(OI.stick1.getRawAxis(0)) > deadZone ? OI.stick1.getRawAxis(0) : 0.0;
+    	rawLeftStickY = Math.abs(OI.stick1.getRawAxis(1)) > deadZone ? OI.stick1.getRawAxis(1) : 0.0;
+    	rawRightStickX = Math.abs(OI.stick1.getRawAxis(4)) > deadZone ? OI.stick1.getRawAxis(4) : 0.0;
+    	
     	if (OI.stick1.getRawButton(5)) {
-	    	leftStickX = Math.max(Math.min(leftStickX + OI.stick1.getRawAxis(0) / accelRate, 1.0), -1.0);
-	    	leftStickY = Math.max(Math.min(leftStickY + OI.stick1.getRawAxis(1) / accelRate, 1.0), -1.0);
-	    	rightStickX = Math.max(Math.min(rightStickX + OI.stick1.getRawAxis(4) / accelRate, 1.0), -1.0);
+    		leftStickX = increaseSpeed(leftStickX, rawLeftStickX, accelRate);
+    		leftStickY = increaseSpeed(leftStickY, rawLeftStickY, accelRate);
+    		rightStickX = increaseSpeed(rightStickX, rawRightStickX, accelRate);
     	} else {
-    		leftStickX = OI.stick1.getRawAxis(0);
-    		leftStickY = OI.stick1.getRawAxis(1);
-    		rightStickX = OI.stick1.getRawAxis(4);
+    		leftStickX = rawLeftStickX;
+    		leftStickY = rawLeftStickY;
+    		rightStickX = rawRightStickX;
     	}
     	
     	if (OI.stick1.getRawButton(6)) {
@@ -59,5 +71,17 @@ public class DriveFromJoysticks extends Command {
     }
     
     protected void interrupted() {
+    }
+    
+    private double increaseSpeed(double currentSpeed, double targetSpeed, double accelRate) {
+    	if (currentSpeed < targetSpeed) {
+    		currentSpeed += accelRate;
+    		if (currentSpeed > targetSpeed) currentSpeed = targetSpeed;
+    	} else if (currentSpeed > targetSpeed) {
+    		currentSpeed -= accelRate;
+    		if (currentSpeed < targetSpeed) currentSpeed = targetSpeed;
+    	}
+    	
+    	return currentSpeed;
     }
 }

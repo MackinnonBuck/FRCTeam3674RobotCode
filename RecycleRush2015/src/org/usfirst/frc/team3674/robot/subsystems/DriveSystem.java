@@ -42,6 +42,10 @@ public class DriveSystem extends Subsystem {
         setDefaultCommand(new DriveFromJoysticks());
     }
     
+    public void setSafetyEnabled(boolean enabled) {
+    	robotDrive.setSafetyEnabled(enabled);
+    }
+    
     public void drive() {
     	robotDrive.mecanumDrive_Cartesian(speedX, speedY, speedZ, 0);
     }

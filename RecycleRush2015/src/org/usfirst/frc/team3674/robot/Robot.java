@@ -32,6 +32,7 @@ public class Robot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
+    	driveSystem.setSafetyEnabled(false);
         if (autonomousCommand != null) autonomousCommand.start();
     }
     
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	driveSystem.setSafetyEnabled(true);
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
     
