@@ -8,23 +8,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveFromJoysticks extends Command {
 	
-	private double xPower;
-	private double yPower;
-	private double zPower;
-	private double leftStickX;
-	private double leftStickY;
-	private double rightStickX;
+	private double xSpeed;
+	private double ySpeed;
+	private double zSpeed;
+	private double speedLimit;
+	private double targetSpeedX;
+	private double targetSpeedY;
+	private double targetSpeedZ;
 	private double accelRate;
 	private double deadZone;
 	
     public DriveFromJoysticks() {
         requires(Robot.driveSystem);
-        xPower = 0.0;
-        yPower = 0.0;
-        zPower = 0.0;
-        leftStickX = 0.0;
-        leftStickY = 0.0;
-        rightStickX = 0.0;
+        xSpeed = 0.0;
+        ySpeed = 0.0;
+        zSpeed = 0.0;
+        targetSpeedX = 0.0;
+        targetSpeedY = 0.0;
+        targetSpeedZ = 0.0;
+        speedLimit = 1.0;
         accelRate = 0.015;
         deadZone = 0.1;
     }
@@ -33,34 +35,77 @@ public class DriveFromJoysticks extends Command {
     }
     
     protected void execute() {
-    	leftStickX = Math.abs(OI.stick1.getRawAxis(0)) > deadZone ? OI.stick1.getRawAxis(0) : 0.0;
-    	leftStickY = Math.abs(OI.stick1.getRawAxis(1)) > deadZone ? OI.stick1.getRawAxis(1) : 0.0;
-    	rightStickX = Math.abs(OI.stick1.getRawAxis(4)) > deadZone ? OI.stick1.getRawAxis(4) : 0.0;
+    	if (OI.stick1.getPOV() != -1 || OI.stick1.getRawAxis(3) >= deadZone) {
+    		speedLimit = 0.25;
+    	} else {
+    		speedLimit = 1.0;
+    	}
+    
+    	if (OI.stick1.getPOV() != -1) {
+    		switch (OI.stick1.getPOV()) {
+    		case 0:
+    			targetSpeedX = 0.0;
+    			targetSpeedY = -speedLimit;
+    			break;
+    		case 45:
+    			targetSpeedX = speedLimit;
+    			targetSpeedY = -speedLimit;
+    			break;
+    		case 90:
+    			targetSpeedX = speedLimit;
+    			targetSpeedY = 0.0;
+    			break;
+    		case 135:
+    			targetSpeedX = speedLimit;
+    			targetSpeedY = speedLimit;
+    			break;
+    		case 180:
+    			targetSpeedX = 0.0;
+    			targetSpeedY = speedLimit;
+    			break;
+    		case 225:
+    			targetSpeedX = -speedLimit;
+    			targetSpeedY = speedLimit;
+    			break;
+    		case 270:
+    			targetSpeedX = -speedLimit;
+    			targetSpeedY = 0.0;
+    			break;
+    		case 315:
+    			targetSpeedX = -speedLimit;
+    			targetSpeedY = -speedLimit;
+    			break;
+    		default:
+    			break;
+    		}
+    	} else {
+	    	targetSpeedX = Math.max(Math.min(Math.abs(OI.stick1.getRawAxis(0)) > deadZone ? OI.stick1.getRawAxis(0) : 0.0,
+	    			speedLimit), -speedLimit);
+	    	targetSpeedY = Math.max(Math.min(Math.abs(OI.stick1.getRawAxis(1)) > deadZone ? OI.stick1.getRawAxis(1) : 0.0,
+	    			speedLimit), -speedLimit);
+    	}
+    	
+    	targetSpeedZ = Math.max(Math.min(Math.abs(OI.stick1.getRawAxis(4)) > deadZone ? OI.stick1.getRawAxis(4) : 0.0,
+    			speedLimit), -speedLimit);
     	
     	if (OI.stick1.getRawAxis(2) >= deadZone) {
-    		xPower = increaseSpeed(xPower, leftStickX, accelRate);
-    		yPower = increaseSpeed(yPower, leftStickY, accelRate);
-    		zPower = increaseSpeed(zPower, rightStickX, accelRate);
+    		xSpeed = increaseSpeed(xSpeed, targetSpeedX, accelRate);
+    		ySpeed = increaseSpeed(ySpeed, targetSpeedY, accelRate);
+    		zSpeed = increaseSpeed(zSpeed, targetSpeedZ, accelRate);
     	} else {
-    		xPower = leftStickX;
-    		yPower = leftStickY;
-    		zPower = rightStickX;
+    		xSpeed = targetSpeedX;
+    		ySpeed = targetSpeedY;
+    		zSpeed = targetSpeedZ;
     	}
     	
-    	if (OI.stick1.getRawAxis(3) >= deadZone) {
-	    	Robot.driveSystem.setSpeedX(Math.max(Math.min(xPower, 0.25), -0.25));
-	    	Robot.driveSystem.setSpeedY(Math.max(Math.min(yPower, 0.25), -0.25));
-	    	Robot.driveSystem.setSpeedZ(Math.max(Math.min(zPower, 0.25), -0.25));
-    	} else {
-    		Robot.driveSystem.setSpeedX(xPower);
-	    	Robot.driveSystem.setSpeedY(yPower);
-	    	Robot.driveSystem.setSpeedZ(zPower);
-    	}
+    	Robot.driveSystem.setSpeedX(xSpeed);
+    	Robot.driveSystem.setSpeedY(ySpeed);
+    	Robot.driveSystem.setSpeedZ(zSpeed);
     	Robot.driveSystem.drive();
     	
-    	SmartDashboard.putNumber("X Power:", xPower);
-    	SmartDashboard.putNumber("Y Power:", yPower);
-    	SmartDashboard.putNumber("Z Power:", zPower);
+    	SmartDashboard.putNumber("X Power:", xSpeed);
+    	SmartDashboard.putNumber("Y Power:", ySpeed);
+    	SmartDashboard.putNumber("Z Power:", zSpeed);
     }
     
     protected boolean isFinished() {
