@@ -8,5 +8,4 @@ public class RobotMap {
 			liftEncoderPort1 = 1, liftEncoderPort2 = 2, motorEncoderPort1 = 3, motorEncoderPort2 = 4,
 			motorEncoderPort3 = 5, motorEncoderPort4 = 6;
 	
-	
 }

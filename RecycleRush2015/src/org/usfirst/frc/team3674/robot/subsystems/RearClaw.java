@@ -22,6 +22,5 @@ public class RearClaw extends Subsystem {
     	motorTalon.set(speed);
     }
     
-    
 }
 
