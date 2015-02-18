@@ -18,7 +18,7 @@ public class BasicLiftFromInput extends Command {
     }
 
     protected void execute() {
-    	if (Math.abs(OI.stick2.getRawAxis(1)) <= deadZone) {
+    	if (Math.abs(OI.stick2.getRawAxis(1)) >= deadZone) {
     		Robot.liftMechanism.setPower(OI.stick2.getRawAxis(1));
     	} else {
     		Robot.liftMechanism.setPower(0.0);

@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class LiftMechanism extends Subsystem {
 	
-	private Talon liftTalon;
+	private Talon rightLiftTalon;
+	private Talon leftLiftTalon;
 	private Encoder liftEncoder;
 	private double targetSpeed;
 	private double threshold;
@@ -17,9 +18,10 @@ public class LiftMechanism extends Subsystem {
 	private int targetPosition;
 
 	public LiftMechanism() {
-		liftTalon = new Talon(RobotMap.liftTalonPort);
+		rightLiftTalon = new Talon(RobotMap.rightLiftTalonPort);
+		leftLiftTalon = new Talon(RobotMap.leftLiftTalonPort);
     	liftEncoder = new Encoder(RobotMap.liftEncoderPort1, RobotMap.liftEncoderPort2);
-		liftTalon.set(0.0);
+		rightLiftTalon.set(0.0);
 		targetSpeed = 0;
 		threshold = 0;
 		targetPosition = 0;
@@ -30,11 +32,12 @@ public class LiftMechanism extends Subsystem {
     }
         
     public void setPower(double power) {
-    	liftTalon.set(power);
+    	leftLiftTalon.set(power);
+    	rightLiftTalon.set(-power);
     }
     
     public double getPower() {
-    	return liftTalon.get();
+    	return rightLiftTalon.get();
     }
     
     public double getSpeed() {
