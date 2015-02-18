@@ -1,24 +1,21 @@
 package org.usfirst.frc.team3674.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutonomousCommand extends CommandGroup {
     
     
 	public  AutonomousCommand() {
-    	/*
-		for(int i = 0; i < 3; i++){
+		if(SmartDashboard.getString("Autonomous Mode:") == "1"){
 			
-			addSequential //pick up tote
-			addSequential //move forward some distance
-		
 		}
-		
-		addSequential //turn left
-		addSequential //back-up some distance
-		addSequential //set down totes
-		addSequential //strafe away
-		*/
+		if(SmartDashboard.getString("Autonomous Mode:") == "2"){
+			
+		}
+		if(SmartDashboard.getString("Autonomous Mode:") == "3"){
+			
+		}
 	}
 }
 
