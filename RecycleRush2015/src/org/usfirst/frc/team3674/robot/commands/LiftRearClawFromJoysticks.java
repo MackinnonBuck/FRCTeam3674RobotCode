@@ -5,23 +5,23 @@ import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class BasicLiftFromInput extends Command {
+public class LiftRearClawFromJoysticks extends Command {
 	
 	private double deadZone;
 	
-    public BasicLiftFromInput() {
-        requires(Robot.liftMechanism);
-        deadZone = 0.1;
+    public LiftRearClawFromJoysticks() {
+    	requires(Robot.rearClaw);
+    	deadZone = 0.1;
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	if (Math.abs(OI.stick2.getRawAxis(1)) >= deadZone) {
-    		Robot.liftMechanism.setPower(OI.stick2.getRawAxis(1));
+    	if (Math.abs(OI.stick2.getRawAxis(5)) >= deadZone) {
+    		Robot.rearClaw.setSpeed(OI.stick2.getRawAxis(5));
     	} else {
-    		Robot.liftMechanism.setPower(0.0);
+    		Robot.rearClaw.setSpeed(0.0);
     	}
     }
 
