@@ -7,5 +7,4 @@ public class RobotMap {
 			collectionSystemLeftMotor = 8, collectionSystemRightMotor = 9, rearClawMotor = 7,
 			liftEncoderPort1 = 1, liftEncoderPort2 = 2, motorEncoderPort1 = 3, motorEncoderPort2 = 4,
 			motorEncoderPort3 = 5, motorEncoderPort4 = 6;
-	
 }

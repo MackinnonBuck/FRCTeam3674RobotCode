@@ -73,7 +73,6 @@ public class LiftMechanism extends Subsystem {
     }
     
     public int getStartingPosition() {
-    	// Insert code here. Any existing code below is a placeholder.
     	return 0;
     }
     

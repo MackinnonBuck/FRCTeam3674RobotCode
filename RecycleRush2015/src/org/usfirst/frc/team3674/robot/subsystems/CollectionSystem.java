@@ -16,7 +16,6 @@ public class CollectionSystem extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        
     }
     
     public void setPower(double power) {

@@ -33,7 +33,6 @@ public class OI {
 		stick2_lb.whenReleased(new StopCollectionWheels());
 		stick2_rb.whenReleased(new StopCollectionWheels());
 		SmartDashboard.putString("Autonomous Mode:", "1");
-		
 	}
 	
 }
