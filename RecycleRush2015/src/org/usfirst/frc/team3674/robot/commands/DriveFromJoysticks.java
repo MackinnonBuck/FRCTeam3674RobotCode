@@ -88,7 +88,7 @@ public class DriveFromJoysticks extends Command {
     	targetSpeedZ = Math.max(Math.min(Math.abs(OI.stick1.getRawAxis(4)) > deadZone ? OI.stick1.getRawAxis(4) : 0.0,
     			speedLimit), -speedLimit);
     	
-    	if (OI.stick1.getRawAxis(2) >= deadZone) {
+    	if (OI.stick1.getRawAxis(2) < deadZone) {
     		xSpeed = increaseSpeed(xSpeed, targetSpeedX, accelRate);
     		ySpeed = increaseSpeed(ySpeed, targetSpeedY, accelRate);
     		zSpeed = increaseSpeed(zSpeed, targetSpeedZ, accelRate);
