@@ -7,8 +7,6 @@ import org.usfirst.frc.team3674.robot.triggers.LeftTrigger;
 import org.usfirst.frc.team3674.robot.triggers.RightTrigger;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.NamedSendable;
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
@@ -33,7 +31,7 @@ public class OI {
 		stick2_lb.whenPressed(new SpinCollectionWheelsOutward());
 		stick2_rb.whenPressed(new SpinCollectionWheelsInward());
 		stick2_lb.whenReleased(new StopCollectionWheels());
-		stick2_rb.whenPressed(new StopCollectionWheels());
+		stick2_rb.whenReleased(new StopCollectionWheels());
 		SmartDashboard.putString("Autonomous Mode:", "1");
 		
 	}

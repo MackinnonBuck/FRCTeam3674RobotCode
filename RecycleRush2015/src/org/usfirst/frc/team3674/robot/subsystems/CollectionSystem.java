@@ -7,10 +7,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class CollectionSystem extends Subsystem {
     
-    private Talon wheelTalon;
+    private Talon leftWheelTalon;
+    private Talon rightWheelTalon;
     
     public CollectionSystem() {
-    	wheelTalon = new Talon(RobotMap.collectionSystemMotorPort);
+    	leftWheelTalon = new Talon(RobotMap.collectionSystemLeftMotor);
+    	rightWheelTalon = new Talon(RobotMap.collectionSystemRightMotor);
     }
 
     public void initDefaultCommand() {
@@ -18,7 +20,8 @@ public class CollectionSystem extends Subsystem {
     }
     
     public void setPower(double power) {
-    	wheelTalon.set(power);
+    	leftWheelTalon.set(power);
+    	rightWheelTalon.set(power);
     }
     
 }

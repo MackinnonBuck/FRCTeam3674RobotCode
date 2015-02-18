@@ -11,7 +11,7 @@ public class SpinCollectionWheelsOutward extends Command {
     }
 
     protected void initialize() {
-    	Robot.collectionSystem.setPower(1.0);
+    	Robot.collectionSystem.setPower(-1.0);
     }
 
     protected void execute() {

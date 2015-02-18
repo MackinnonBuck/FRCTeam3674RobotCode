@@ -33,7 +33,7 @@ public class LiftMechanism extends Subsystem {
         
     public void setPower(double power) {
     	leftLiftTalon.set(power);
-    	rightLiftTalon.set(-power);
+    	rightLiftTalon.set(power);
     }
     
     public double getPower() {

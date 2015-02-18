@@ -11,7 +11,7 @@ public class BasicLiftFromInput extends Command {
 	
     public BasicLiftFromInput() {
         requires(Robot.liftMechanism);
-        deadZone = 0.1;
+        deadZone = 0.2;
     }
 
     protected void initialize() {
