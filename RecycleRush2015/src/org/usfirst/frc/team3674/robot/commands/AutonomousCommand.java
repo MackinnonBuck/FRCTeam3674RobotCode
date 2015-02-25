@@ -23,5 +23,11 @@ public class AutonomousCommand extends CommandGroup {
 			
 		}
 		*/
+		addSequential(new BasicLiftFromPresets(1.0, -1.0));
+		addSequential(new BasicLiftFromPresets(-1.0, 1.0));
+		addSequential(new BasicDriveFromPresets(0.0, 0.0, 0.5, 0.0, 1.5, 1.5));
+		addSequential(new BasicDriveFromPresets(0.0, 1.0, 0.0, 1.0, 4.0, 5.0));
+		addSequential(new BasicLiftFromPresets(1.0, -1.0));
+		addSequential(new BasicDriveFromPresets(0.0, -0.15, 0.0, 0.5, 0.5, 1.0));
 	}
 }

@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team3674.robot;
 
-import org.usfirst.frc.team3674.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team3674.robot.commands.BasicDriveFromPresets;
 import org.usfirst.frc.team3674.robot.subsystems.CollectionSystem;
 import org.usfirst.frc.team3674.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team3674.robot.subsystems.LiftMechanism;
@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
     	collectionSystem = new CollectionSystem();
     	rearClaw = new RearClaw();
 		oi = new OI();
-        autonomousCommand = new AutonomousCommand();
+        autonomousCommand = new BasicDriveFromPresets(0.5, 0.5, 0.0, 1.0, 3.0, 5.0);
     }
 	
 	public void disabledPeriodic() {
