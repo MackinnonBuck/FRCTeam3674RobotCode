@@ -4,14 +4,19 @@ import org.usfirst.frc.team3674.robot.OI;
 import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LiftRearClawFromJoysticks extends Command {
 	
 	private double deadZone;
+	private double lowerSpeedLimit;
+	private double upperSpeedLimit;
 	
     public LiftRearClawFromJoysticks() {
     	requires(Robot.rearClaw);
     	deadZone = 0.1;
+    	lowerSpeedLimit = 0.25;
+    	upperSpeedLimit = 0.75;
     }
 
     protected void initialize() {
@@ -19,10 +24,13 @@ public class LiftRearClawFromJoysticks extends Command {
 
     protected void execute() {
     	if (Math.abs(OI.stick2.getRawAxis(5)) >= deadZone) {
-    		Robot.rearClaw.setSpeed(OI.stick2.getRawAxis(5));
+    		Robot.rearClaw.setSpeed(Math.max(Math.min(OI.stick2.getRawAxis(5),
+    				lowerSpeedLimit), Robot.rearClaw.limitReached() ? 0.0 : -upperSpeedLimit));
     	} else {
     		Robot.rearClaw.setSpeed(0.0);
     	}
+    	
+    	SmartDashboard.putBoolean("Claw Limit Value:", Robot.rearClaw.limitReached());
     }
 
     protected boolean isFinished() {
@@ -34,6 +42,5 @@ public class LiftRearClawFromJoysticks extends Command {
 
     protected void interrupted() {
     }
-    
     
 }
