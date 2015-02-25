@@ -3,10 +3,10 @@ package org.usfirst.frc.team3674.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutonomousCommand extends CommandGroup {
+public class PickUpYellowToteAndDriveToAutoZone extends CommandGroup {
     
     
-	public  AutonomousCommand() {
+	public  PickUpYellowToteAndDriveToAutoZone() {
 		/*
 		if(SmartDashboard.getString("Autonomous Mode:") == "1"){
 			addSequential(new BasicDriveFromPresets(0, -0.5, 0, 2));
