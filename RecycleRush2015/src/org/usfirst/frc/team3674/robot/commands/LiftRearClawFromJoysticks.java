@@ -25,12 +25,14 @@ public class LiftRearClawFromJoysticks extends Command {
     protected void execute() {
     	if (Math.abs(OI.stick2.getRawAxis(5)) >= deadZone) {
     		Robot.rearClaw.setSpeed(Math.max(Math.min(OI.stick2.getRawAxis(5),
-    				lowerSpeedLimit), Robot.rearClaw.limitReached() ? 0.0 : -upperSpeedLimit));
+    				Robot.rearClaw.lowerLimitReached() ? 0.0 : lowerSpeedLimit),
+    				Robot.rearClaw.upperLimitReached() ? 0.0 : -upperSpeedLimit));
     	} else {
     		Robot.rearClaw.setSpeed(0.0);
     	}
     	
-    	SmartDashboard.putBoolean("Claw Limit Value:", Robot.rearClaw.limitReached());
+    	SmartDashboard.putBoolean("Lower Claw Limit Value:", Robot.rearClaw.lowerLimitReached());
+    	SmartDashboard.putBoolean("Upper Claw Limit Value:", Robot.rearClaw.upperLimitReached());
     }
 
     protected boolean isFinished() {

@@ -10,11 +10,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RearClaw extends Subsystem {
 	
 	private Talon motorTalon;
-	private DigitalInput limitSwitch;
+	private DigitalInput lowerSwitch;
+	private DigitalInput upperSwitch;
 	
 	public RearClaw() {
 		motorTalon = new Talon(RobotMap.rearClawMotor);
-		limitSwitch = new DigitalInput(RobotMap.clawLimitSwitch);
+		lowerSwitch = new DigitalInput(RobotMap.clawLowLimitSwitch);
+		upperSwitch = new DigitalInput(RobotMap.clawHighLimitSwitch);
 	}
 	
     public void initDefaultCommand() {
@@ -25,9 +27,12 @@ public class RearClaw extends Subsystem {
     	motorTalon.set(-speed);
     }
     
-    public boolean limitReached() {
-    	return !limitSwitch.get();
+    public boolean upperLimitReached() {
+    	return !upperSwitch.get();
     }
     
+    public boolean lowerLimitReached() {
+    	return !lowerSwitch.get();
+    }
 }
 
