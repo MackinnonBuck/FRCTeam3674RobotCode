@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team3674.robot;
 
 import org.usfirst.frc.team3674.robot.commands.BasicDriveFromPresets;
@@ -45,7 +44,6 @@ public class Robot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-    	driveSystem.setSafetyEnabled(false);
     	autonomousCommand = (Command) autonomousChooser.getSelected();
         autonomousCommand.start();
     }
@@ -55,12 +53,10 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	driveSystem.setSafetyEnabled(true);
-        autonomousCommand.cancel();
+    	if (autonomousCommand != null) autonomousCommand.cancel();
     }
     
     public void disabledInit(){
-
     }
     
     public void teleopPeriodic() {

@@ -14,7 +14,7 @@ public class LiftRearClawFromJoysticks extends Command {
 	
     public LiftRearClawFromJoysticks() {
     	requires(Robot.rearClaw);
-    	deadZone = 0.1;
+    	deadZone = 0.15;
     	lowerSpeedLimit = 0.25;
     	upperSpeedLimit = 0.75;
     }

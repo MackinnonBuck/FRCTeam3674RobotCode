@@ -24,7 +24,7 @@ public class RearClaw extends Subsystem {
     }
     
     public void setSpeed(double speed) {
-    	motorTalon.set(-speed);
+    	motorTalon.set(speed);
     }
     
     public boolean upperLimitReached() {

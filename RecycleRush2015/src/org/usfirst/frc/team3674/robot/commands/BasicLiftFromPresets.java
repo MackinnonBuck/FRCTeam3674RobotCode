@@ -6,18 +6,24 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class BasicLiftFromPresets extends Command {
 	
+	private double init_speed;
+	private double init_endMarker;
+	private int init_stepCount;
 	private double speed;
 	private double endMarker;
 	private int stepCount;
 	
     public BasicLiftFromPresets(double speed, double seconds) {
         requires(Robot.liftMechanism);
-        this.speed = speed;
-        this.endMarker = seconds * 50.0;
-        this.stepCount = 0;
+        this.init_speed = speed;
+        this.init_endMarker = seconds * 50.0;
+        this.init_stepCount = 0;
     }
 
     protected void initialize() {
+    	speed = init_speed;
+    	endMarker = init_endMarker;
+    	stepCount = init_stepCount;
     }
 
     protected void execute() {
@@ -27,7 +33,7 @@ public class BasicLiftFromPresets extends Command {
 
     protected boolean isFinished() {
         return (Robot.liftMechanism.highLimitReached() && speed < 0) || (Robot.liftMechanism.lowLimitReached() && speed > 0)
-        		|| speed == 0.0 || stepCount > endMarker;
+        		|| speed == 0.0 || (stepCount > endMarker && endMarker >= 0.0);
     }
 
     protected void end() {

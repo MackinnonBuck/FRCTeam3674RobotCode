@@ -3,6 +3,7 @@ package org.usfirst.frc.team3674.robot.commands;
 import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class BasicDriveFromPresets extends Command {
 	
@@ -12,6 +13,7 @@ public class BasicDriveFromPresets extends Command {
 	private double endAccelMarker;
 	private double startDecelMarker;
 	private double endMarker;
+	private int init_stepCount;
 	private int stepCount;
 	
     public BasicDriveFromPresets(double targetSpeedX, double targetSpeedY, double targetSpeedZ,
@@ -23,23 +25,25 @@ public class BasicDriveFromPresets extends Command {
     	this.endAccelMarker = endAccelMarker * 50.0;
     	this.startDecelMarker = startDecelMarker * 50.0;
     	this.endMarker = endMarker * 50.0;
-    	this.stepCount = 0;
+    	this.init_stepCount = 0;
     }
 
     protected void initialize() {
-    	
+    	stepCount = init_stepCount;
     }
 
     protected void execute() {
-    	if (stepCount <= endAccelMarker) {
+    	if (stepCount <= endAccelMarker) {	
     		Robot.driveSystem.setSpeedX(targetSpeedX * (stepCount / endAccelMarker));
     		Robot.driveSystem.setSpeedY(targetSpeedY * (stepCount / endAccelMarker));
     		Robot.driveSystem.setSpeedZ(targetSpeedZ * (stepCount / endAccelMarker));
     	} else if (stepCount >= startDecelMarker) {
-    		Robot.driveSystem.setSpeedX(targetSpeedX * ((endMarker - startDecelMarker) / (endMarker - stepCount)));
-    		Robot.driveSystem.setSpeedY(targetSpeedY * ((endMarker - startDecelMarker) / (endMarker - stepCount)));
-    		Robot.driveSystem.setSpeedZ(targetSpeedZ * ((endMarker - startDecelMarker) / (endMarker - stepCount)));
+    		Robot.driveSystem.setSpeedX(targetSpeedX * ((endMarker - stepCount) / (endMarker - startDecelMarker)));
+    		Robot.driveSystem.setSpeedY(targetSpeedY * ((endMarker - stepCount) / (endMarker - startDecelMarker)));
+    		Robot.driveSystem.setSpeedZ(targetSpeedZ * ((endMarker - stepCount) / (endMarker - startDecelMarker)));
     	}
+    	
+    	Robot.driveSystem.drive();
     	
     	stepCount++;
     }
