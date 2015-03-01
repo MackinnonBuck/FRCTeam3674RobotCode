@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3674.robot;
 
-import org.usfirst.frc.team3674.robot.commands.BasicDriveFromPresets;
-import org.usfirst.frc.team3674.robot.commands.BasicLiftFromPresets;
+import org.usfirst.frc.team3674.robot.commands.DriveStraightToAutoZone;
+import org.usfirst.frc.team3674.robot.commands.GetRecyclingContainer;
 import org.usfirst.frc.team3674.robot.commands.PickUpYellowToteAndDriveToAutoZone;
 import org.usfirst.frc.team3674.robot.subsystems.CollectionSystem;
 import org.usfirst.frc.team3674.robot.subsystems.DriveSystem;
@@ -32,10 +32,10 @@ public class Robot extends IterativeRobot {
     	rearClaw = new RearClaw();
     	autonomousChooser = new SendableChooser();
     	autonomousChooser.addDefault("1 Yellow Tote; Move To Auto Zone", new PickUpYellowToteAndDriveToAutoZone());
-    	autonomousChooser.addObject("Custom Drive", new BasicDriveFromPresets(0.0, 0.5, 0.0, 2.0, 4.0, 5.0));
-    	autonomousChooser.addObject("Custom Pickup (Lower)", new BasicLiftFromPresets(1.0, -1.0));
-    	autonomousChooser.addObject("Custom Pickup (Raise)", new BasicLiftFromPresets(-1.0, 2.0));
+    	autonomousChooser.addObject("Move Straight To Auto Zone", new DriveStraightToAutoZone());
+    	autonomousChooser.addObject("Get Recycling Container", new GetRecyclingContainer());
 		oi = new OI();
+		
 		SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     }
 	

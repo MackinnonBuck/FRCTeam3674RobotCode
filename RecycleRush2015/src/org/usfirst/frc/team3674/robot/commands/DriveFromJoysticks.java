@@ -27,7 +27,7 @@ public class DriveFromJoysticks extends Command {
         targetSpeedY = 0.0;
         targetSpeedZ = 0.0;
         speedLimit = 1.0;
-        accelRate = 0.015;
+        accelRate = 0.025;
         deadZone = 0.1;
     }
     
@@ -48,15 +48,15 @@ public class DriveFromJoysticks extends Command {
     			targetSpeedY = -speedLimit;
     			break;
     		case 45:
-    			targetSpeedX = speedLimit;
+    			targetSpeedX = speedLimit * 2.0;
     			targetSpeedY = -speedLimit;
     			break;
     		case 90:
-    			targetSpeedX = speedLimit;
+    			targetSpeedX = speedLimit * 2.0;
     			targetSpeedY = 0.0;
     			break;
     		case 135:
-    			targetSpeedX = speedLimit;
+    			targetSpeedX = speedLimit * 2.0;
     			targetSpeedY = speedLimit;
     			break;
     		case 180:
@@ -64,15 +64,15 @@ public class DriveFromJoysticks extends Command {
     			targetSpeedY = speedLimit;
     			break;
     		case 225:
-    			targetSpeedX = -speedLimit;
+    			targetSpeedX = -speedLimit * 2.0;
     			targetSpeedY = speedLimit;
     			break;
     		case 270:
-    			targetSpeedX = -speedLimit;
+    			targetSpeedX = -speedLimit * 2.0;
     			targetSpeedY = 0.0;
     			break;
     		case 315:
-    			targetSpeedX = -speedLimit;
+    			targetSpeedX = -speedLimit * 2.0;
     			targetSpeedY = -speedLimit;
     			break;
     		default:
@@ -103,9 +103,9 @@ public class DriveFromJoysticks extends Command {
     	Robot.driveSystem.setSpeedZ(zSpeed);
     	Robot.driveSystem.drive();
     	
-    	SmartDashboard.putNumber("X Power:", xSpeed);
-    	SmartDashboard.putNumber("Y Power:", ySpeed);
-    	SmartDashboard.putNumber("Z Power:", zSpeed);
+    	//SmartDashboard.putNumber("X Power:", xSpeed);
+    	//SmartDashboard.putNumber("Y Power:", ySpeed);
+    	//SmartDashboard.putNumber("Z Power:", zSpeed);
     }
     
     protected boolean isFinished() {

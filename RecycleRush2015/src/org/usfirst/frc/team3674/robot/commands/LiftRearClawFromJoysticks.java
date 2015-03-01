@@ -31,8 +31,8 @@ public class LiftRearClawFromJoysticks extends Command {
     		Robot.rearClaw.setSpeed(0.0);
     	}
     	
-    	SmartDashboard.putBoolean("Lower Claw Limit Value:", Robot.rearClaw.lowerLimitReached());
-    	SmartDashboard.putBoolean("Upper Claw Limit Value:", Robot.rearClaw.upperLimitReached());
+    	//SmartDashboard.putBoolean("Lower Claw Limit Value:", Robot.rearClaw.lowerLimitReached());
+    	//SmartDashboard.putBoolean("Upper Claw Limit Value:", Robot.rearClaw.upperLimitReached());
     }
 
     protected boolean isFinished() {
