@@ -3,7 +3,6 @@ package org.usfirst.frc.team3674.robot;
 import org.usfirst.frc.team3674.robot.commands.DriveStraightToAutoZone;
 import org.usfirst.frc.team3674.robot.commands.GetRecyclingContainer;
 import org.usfirst.frc.team3674.robot.commands.PickUpYellowToteAndDriveToAutoZone;
-import org.usfirst.frc.team3674.robot.subsystems.CollectionSystem;
 import org.usfirst.frc.team3674.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team3674.robot.subsystems.LiftMechanism;
 import org.usfirst.frc.team3674.robot.subsystems.RearClaw;
@@ -20,7 +19,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveSystem driveSystem;
 	public static LiftMechanism liftMechanism;
-	public static CollectionSystem collectionSystem;
 	public static RearClaw rearClaw;
 	private static Command autonomousCommand;
 	private static SendableChooser autonomousChooser;
@@ -28,7 +26,6 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	driveSystem = new DriveSystem();
     	liftMechanism = new LiftMechanism();
-    	collectionSystem = new CollectionSystem();
     	rearClaw = new RearClaw();
     	autonomousChooser = new SendableChooser();
     	autonomousChooser.addDefault("1 Yellow Tote; Move To Auto Zone", new PickUpYellowToteAndDriveToAutoZone());

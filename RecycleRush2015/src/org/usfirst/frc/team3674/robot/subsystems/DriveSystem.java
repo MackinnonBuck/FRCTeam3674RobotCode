@@ -3,7 +3,6 @@ package org.usfirst.frc.team3674.robot.subsystems;
 import org.usfirst.frc.team3674.robot.RobotMap;
 import org.usfirst.frc.team3674.robot.commands.DriveFromJoysticks;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Talon;
@@ -17,8 +16,6 @@ public class DriveSystem extends Subsystem {
 	private Talon rearRightTalon;
 	private RobotDrive robotDrive;
 	private double speedX, speedY, speedZ;
-	private Encoder motorEncoderFront;
-	private Encoder motorEncoderRear;
 	
 	public DriveSystem() {
 		frontLeftTalon = new Talon(RobotMap.frontLeftMotor);
@@ -33,9 +30,6 @@ public class DriveSystem extends Subsystem {
 		speedX = 0.0;
 		speedY = 0.0;
 		speedZ = 0.0;
-		
-		motorEncoderFront = new Encoder(RobotMap.motorEncoderPort1, RobotMap.motorEncoderPort2);
-		motorEncoderRear = new Encoder(RobotMap.motorEncoderPort3, RobotMap.motorEncoderPort4);
 	}
 
     public void initDefaultCommand() {
@@ -72,14 +66,6 @@ public class DriveSystem extends Subsystem {
 
 	public void setSpeedZ(double speedZ) {
 		this.speedZ = speedZ;
-	}
-	
-	public int getFrontPosition() {
-		return motorEncoderFront.getRaw();
-	}
-	
-	public int getRearPosition() {
-		return motorEncoderRear.getRaw();
 	}
 
 	public double getFrontLeftTalonPower() {

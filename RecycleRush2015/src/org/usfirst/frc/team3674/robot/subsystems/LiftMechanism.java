@@ -4,7 +4,6 @@ import org.usfirst.frc.team3674.robot.RobotMap;
 import org.usfirst.frc.team3674.robot.commands.BasicLiftFromInput;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,7 +11,6 @@ public class LiftMechanism extends Subsystem {
 	
 	private Talon rightLiftTalon;
 	private Talon leftLiftTalon;
-	private Encoder liftEncoder;
 	private DigitalInput lowLimitSwitch;
 	private DigitalInput highLimitSwitch;
 	private double targetSpeed;
@@ -23,7 +21,6 @@ public class LiftMechanism extends Subsystem {
 	public LiftMechanism() {
 		rightLiftTalon = new Talon(RobotMap.rightLiftTalonPort);
 		leftLiftTalon = new Talon(RobotMap.leftLiftTalonPort);
-    	liftEncoder = new Encoder(RobotMap.liftEncoderPort1, RobotMap.liftEncoderPort2);
     	lowLimitSwitch = new DigitalInput(RobotMap.lowLimitSwitch);
     	highLimitSwitch = new DigitalInput(RobotMap.highLimitSwitch);
 		rightLiftTalon.set(0.0);
@@ -43,10 +40,6 @@ public class LiftMechanism extends Subsystem {
     
     public double getPower() {
     	return rightLiftTalon.get();
-    }
-    
-    public double getSpeed() {
-    	return liftEncoder.getRate();
     }
     
     public double getTargetSpeed() {
@@ -79,10 +72,6 @@ public class LiftMechanism extends Subsystem {
     
     public int getStartingPosition() {
     	return 0;
-    }
-    
-    public int getPosition() {
-    	return liftEncoder.getRaw();
     }
     
     public boolean lowLimitReached() {
