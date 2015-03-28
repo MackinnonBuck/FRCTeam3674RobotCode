@@ -4,7 +4,7 @@ import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class BasicLiftFromPresets extends Command {
+public class LiftFromPresets extends Command {
 	
 	private double init_speed;
 	private double init_endMarker;
@@ -13,7 +13,7 @@ public class BasicLiftFromPresets extends Command {
 	private double endMarker;
 	private int stepCount;
 	
-    public BasicLiftFromPresets(double speed, double seconds) {
+    public LiftFromPresets(double speed, double seconds) {
         requires(Robot.liftMechanism);
         this.init_speed = speed;
         this.init_endMarker = seconds * 50.0;

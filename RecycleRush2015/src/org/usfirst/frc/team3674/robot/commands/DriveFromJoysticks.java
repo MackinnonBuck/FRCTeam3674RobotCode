@@ -4,7 +4,6 @@ import org.usfirst.frc.team3674.robot.OI;
 import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveFromJoysticks extends Command {
 	
@@ -103,9 +102,9 @@ public class DriveFromJoysticks extends Command {
     	Robot.driveSystem.setSpeedZ(zSpeed);
     	Robot.driveSystem.drive();
     	
-    	//SmartDashboard.putNumber("X Power:", xSpeed);
-    	//SmartDashboard.putNumber("Y Power:", ySpeed);
-    	//SmartDashboard.putNumber("Z Power:", zSpeed);
+    	/** /SmartDashboard.putNumber("X Power:", xSpeed);/**/
+    	/** /SmartDashboard.putNumber("Y Power:", ySpeed);/**/
+    	/** /SmartDashboard.putNumber("Z Power:", zSpeed);/**/
     }
     
     protected boolean isFinished() {

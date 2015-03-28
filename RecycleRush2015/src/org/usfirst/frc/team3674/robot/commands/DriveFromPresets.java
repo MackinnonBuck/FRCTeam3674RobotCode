@@ -4,7 +4,7 @@ import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class BasicDriveFromPresets extends Command {
+public class DriveFromPresets extends Command {
 	
 	private double targetSpeedX;
 	private double targetSpeedY;
@@ -15,7 +15,7 @@ public class BasicDriveFromPresets extends Command {
 	private int init_stepCount;
 	private int stepCount;
 	
-    public BasicDriveFromPresets(double targetSpeedX, double targetSpeedY, double targetSpeedZ,
+    public DriveFromPresets(double targetSpeedX, double targetSpeedY, double targetSpeedZ,
     		double endAccelMarker, double startDecelMarker, double endMarker) {
     	requires(Robot.driveSystem);
     	this.targetSpeedX = targetSpeedX;

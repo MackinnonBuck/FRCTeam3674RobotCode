@@ -5,11 +5,11 @@ import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class BasicLiftFromInput extends Command {
+public class LiftFromInput extends Command {
 	
 	private double deadZone;
 	
-    public BasicLiftFromInput() {
+    public LiftFromInput() {
         requires(Robot.liftMechanism);
         deadZone = 0.2;
     }
@@ -26,16 +26,8 @@ public class BasicLiftFromInput extends Command {
     		Robot.liftMechanism.setPower(0.0);
     	}
     	
-    	/*
-    	if (Robot.liftMechanism.lowLimitReached()) {
-    		OI.stick2.setRumble(RumbleType.kRightRumble, 1);
-    	} else {
-    		OI.stick2.setRumble(RumbleType.kRightRumble, 0);
-    	}
-    	*/
-    	
-    	//SmartDashboard.putBoolean("Low Limit Value:", Robot.liftMechanism.lowLimitReached());
-    	//SmartDashboard.putBoolean("High Limit Value:", Robot.liftMechanism.highLimitReached());
+    	/** /SmartDashboard.putBoolean("Low Limit Value:", Robot.liftMechanism.lowLimitReached());/**/
+    	/** /SmartDashboard.putBoolean("High Limit Value:", Robot.liftMechanism.highLimitReached());/**/
     }
 
     protected boolean isFinished() {

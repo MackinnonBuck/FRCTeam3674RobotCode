@@ -4,7 +4,6 @@ import org.usfirst.frc.team3674.robot.OI;
 import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LiftRearClawFromJoysticks extends Command {
 	
@@ -31,8 +30,8 @@ public class LiftRearClawFromJoysticks extends Command {
     		Robot.rearClaw.setSpeed(0.0);
     	}
     	
-    	//SmartDashboard.putBoolean("Lower Claw Limit Value:", Robot.rearClaw.lowerLimitReached());
-    	//SmartDashboard.putBoolean("Upper Claw Limit Value:", Robot.rearClaw.upperLimitReached());
+    	/** /SmartDashboard.putBoolean("Lower Claw Limit Value:", Robot.rearClaw.lowerLimitReached());/**/
+    	/** /SmartDashboard.putBoolean("Upper Claw Limit Value:", Robot.rearClaw.upperLimitReached());/**/
     }
 
     protected boolean isFinished() {

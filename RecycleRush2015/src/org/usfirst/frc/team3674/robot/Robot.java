@@ -28,9 +28,9 @@ public class Robot extends IterativeRobot {
     	liftMechanism = new LiftMechanism();
     	rearClaw = new RearClaw();
     	autonomousChooser = new SendableChooser();
-    	autonomousChooser.addDefault("1 Yellow Tote; Move To Auto Zone", new PickUpYellowToteAndDriveToAutoZone());
+    	autonomousChooser.addDefault("Get Recycling Container (Do Nothing)", new GetRecyclingContainer());
+    	autonomousChooser.addObject("1 Yellow Tote or Container; Move To Auto Zone", new PickUpYellowToteAndDriveToAutoZone());
     	autonomousChooser.addObject("Move Straight To Auto Zone", new DriveStraightToAutoZone());
-    	autonomousChooser.addObject("Get Recycling Container", new GetRecyclingContainer());
 		oi = new OI();
 		
 		SmartDashboard.putData("Autonomous Mode", autonomousChooser);
