@@ -11,16 +11,12 @@ public class LiftMechanism extends Subsystem {
 	
 	private Talon rightBottomLiftTalon;
 	private Talon leftBottomLiftTalon;
-	/** /private Talon rightTopLiftTalon;/**/
-	/** /private Talon leftTopLiftTalon;/**/
 	private DigitalInput lowLimitSwitch;
 	private DigitalInput highLimitSwitch;
 
 	public LiftMechanism() {
 		rightBottomLiftTalon = new Talon(RobotMap.rightBottomLiftTalonPort);
 		leftBottomLiftTalon = new Talon(RobotMap.leftBottomLiftTalonPort);
-		/** /rightTopLiftTalon = new Talon(RobotMap.rightTopLiftTalonPort);/**/
-		/** /leftTopLiftTalon = new Talon(RobotMap.leftTopLiftTalonPort);/**/
     	lowLimitSwitch = new DigitalInput(RobotMap.lowLimitSwitch);
     	highLimitSwitch = new DigitalInput(RobotMap.highLimitSwitch);
 		rightBottomLiftTalon.set(0.0);
@@ -31,17 +27,8 @@ public class LiftMechanism extends Subsystem {
     }
     
     public void setPower(double power) {
-    	/** /
-    	leftBottomLiftTalon.set(power * 0.935 * 0.94);
-    	rightBottomLiftTalon.set(power * 0.94);
-    	leftTopLiftTalon.set(power);
-    	rightTopLiftTalon.set(-power);
-    	/**/
-    	
-    	/**/
     	leftBottomLiftTalon.set(power);
     	rightBottomLiftTalon.set(power);
-    	/**/
     }
     
     public boolean lowLimitReached() {

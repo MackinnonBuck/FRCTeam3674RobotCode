@@ -101,10 +101,6 @@ public class DriveFromJoysticks extends Command {
     	Robot.driveSystem.setSpeedY(ySpeed);
     	Robot.driveSystem.setSpeedZ(zSpeed);
     	Robot.driveSystem.drive();
-    	
-    	/** /SmartDashboard.putNumber("X Power:", xSpeed);/**/
-    	/** /SmartDashboard.putNumber("Y Power:", ySpeed);/**/
-    	/** /SmartDashboard.putNumber("Z Power:", zSpeed);/**/
     }
     
     protected boolean isFinished() {

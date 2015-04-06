@@ -26,8 +26,6 @@ public class LiftFromInput extends Command {
     		Robot.liftMechanism.setPower(0.0);
     	}
     	
-    	/** /SmartDashboard.putBoolean("Low Limit Value:", Robot.liftMechanism.lowLimitReached());/**/
-    	/** /SmartDashboard.putBoolean("High Limit Value:", Robot.liftMechanism.highLimitReached());/**/
     }
 
     protected boolean isFinished() {

@@ -8,4 +8,5 @@ public class GetRecyclingContainer extends CommandGroup {
         addSequential(new LiftFromPresets(1.0, -1.0));
         addSequential(new LiftFromPresets(-1.0, 4.5));
     }
+    
 }
