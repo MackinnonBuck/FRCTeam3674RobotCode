@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3674.robot;
 
+import org.usfirst.frc.team3674.robot.commands.DoNothing;
 import org.usfirst.frc.team3674.robot.commands.DriveStraightToAutoZone;
 import org.usfirst.frc.team3674.robot.commands.GetRecyclingContainer;
 import org.usfirst.frc.team3674.robot.commands.PickUpYellowToteAndDriveToAutoZone;
@@ -28,7 +29,8 @@ public class Robot extends IterativeRobot {
     	liftMechanism = new LiftMechanism();
     	rearClaw = new RearClaw();
     	autonomousChooser = new SendableChooser();
-    	autonomousChooser.addDefault("Get Recycling Container (Do Nothing)", new GetRecyclingContainer());
+    	autonomousChooser.addDefault("Do Nothing", new DoNothing());
+    	autonomousChooser.addObject("Get Recycling Container", new GetRecyclingContainer());
     	autonomousChooser.addObject("1 Yellow Tote or Container; Move To Auto Zone", new PickUpYellowToteAndDriveToAutoZone());
     	autonomousChooser.addObject("Move Straight To Auto Zone", new DriveStraightToAutoZone());
 		oi = new OI();
