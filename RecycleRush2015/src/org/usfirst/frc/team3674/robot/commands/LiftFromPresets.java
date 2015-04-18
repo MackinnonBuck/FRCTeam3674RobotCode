@@ -27,7 +27,7 @@ public class LiftFromPresets extends Command {
     }
 
     protected void execute() {
-    	Robot.liftMechanism.setPower(speed);
+    	Robot.liftMechanism.setTargetRate(speed);
     	if (endMarker > 0.0) stepCount++;
     }
 
@@ -37,7 +37,7 @@ public class LiftFromPresets extends Command {
     }
 
     protected void end() {
-    	Robot.liftMechanism.setPower(0.0);
+    	Robot.liftMechanism.setTargetRate(0.0);
     }
 
     protected void interrupted() {

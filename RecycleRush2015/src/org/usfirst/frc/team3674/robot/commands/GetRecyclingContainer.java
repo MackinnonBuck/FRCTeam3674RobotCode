@@ -6,7 +6,7 @@ public class GetRecyclingContainer extends CommandGroup {
     
     public GetRecyclingContainer() {
         addSequential(new LiftFromPresets(1.0, -1.0));
-        addSequential(new LiftFromPresets(-1.0, 4.5));
+        addSequential(new LiftFromPresets(-1.0, 2.0));
     }
     
 }
