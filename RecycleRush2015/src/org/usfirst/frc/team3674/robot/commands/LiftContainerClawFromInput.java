@@ -5,29 +5,30 @@ import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LiftRearClawFromJoysticks extends Command {
+public class LiftContainerClawFromInput extends Command {
 	
 	private double deadZone;
 	private double lowerSpeedLimit;
 	private double upperSpeedLimit;
 	
-    public LiftRearClawFromJoysticks() {
-    	requires(Robot.rearClaw);
+    public LiftContainerClawFromInput() {
+    	requires(Robot.containerClaw);
     	deadZone = 0.15;
-    	lowerSpeedLimit = 0.25;
+    	lowerSpeedLimit = 0.75;
     	upperSpeedLimit = 0.75;
     }
 
     protected void initialize() {
     }
-
+    
     protected void execute() {
     	if (Math.abs(OI.stick2.getRawAxis(5)) >= deadZone) {
-    		Robot.rearClaw.setSpeed(Math.max(Math.min(OI.stick2.getRawAxis(5),
-    				Robot.rearClaw.lowerLimitReached() ? 0.0 : lowerSpeedLimit),
-    				Robot.rearClaw.upperLimitReached() ? 0.0 : -upperSpeedLimit));
+    		if (Math.abs(OI.stick2.getRawAxis(5)) >= deadZone) {
+    			Robot.containerClaw.setSpeed((
+    					Math.max(Math.min(OI.stick2.getRawAxis(5), lowerSpeedLimit), -upperSpeedLimit)));
+    		}
     	} else {
-    		Robot.rearClaw.setSpeed(0.0);
+    		Robot.containerClaw.setSpeed(0.0);
     	}
     }
 

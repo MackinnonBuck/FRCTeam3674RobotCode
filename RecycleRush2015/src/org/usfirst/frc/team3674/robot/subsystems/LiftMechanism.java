@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3674.robot.subsystems;
 
 import org.usfirst.frc.team3674.robot.RobotMap;
-import org.usfirst.frc.team3674.robot.commands.LiftFromInput;
+import org.usfirst.frc.team3674.robot.commands.LiftClipsFromInput;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -20,6 +20,9 @@ public class LiftMechanism extends Subsystem {
 	private DigitalInput highLimitSwitch;
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
+	private double p;
+	private double i;
+	private double d;
 	private PIDController leftController;
 	private PIDController rightController;
 	private double targetRate;
@@ -34,13 +37,16 @@ public class LiftMechanism extends Subsystem {
     	highLimitSwitch = new DigitalInput(RobotMap.highLimitSwitch);
     	leftEncoder = new Encoder(RobotMap.liftEncoderLeftPortA, RobotMap.liftEncoderLeftPortB);
     	rightEncoder = new Encoder(RobotMap.liftEncoderRightPortA, RobotMap.liftEncoderRightPortB);
-    	leftController = new PIDController(0.0, 0.25, 0.0,
+    	p = 0.0;
+    	i = 0.25;
+    	d = 0.0;
+    	leftController = new PIDController(p, i, d,
     			new PIDSource() {
 		
 					@Override
 					public double pidGet() {
 						SmartDashboard.putNumber("Left Encoder Rate:", leftEncoder.getRate());
-						return targetRate - leftEncoder.getRate() / maxRate;
+						return -targetRate - leftEncoder.getRate() / maxRate;
 					}
 		    		
 		    	},
@@ -49,15 +55,17 @@ public class LiftMechanism extends Subsystem {
 					
 					@Override
 					public void pidWrite(double output) {
-						SmartDashboard.putNumber("Left LM Output:", output);
+						if (lowLimitReached() && output > 0.0)
+							output = 0.0;
+						
 						leftBottomLiftTalon.pidWrite(output);
+						SmartDashboard.putNumber("Left LM Output:", output);
 					}
 					
 				});
     	leftController.setAbsoluteTolerance(10);
     	leftController.setContinuous(false);
-    	leftController.enable();
-    	rightController = new PIDController(0.0, 0.25, 0.0,
+    	rightController = new PIDController(p, i, d,
     			new PIDSource() {
 					
 					@Override
@@ -72,20 +80,23 @@ public class LiftMechanism extends Subsystem {
 					
 					@Override
 					public void pidWrite(double output) {
-						SmartDashboard.putNumber("Right LM Output:", output);
+						if (lowLimitReached() && output < 0.0)
+							output = 0.0;
+						
 						rightBottomLiftTalon.pidWrite(output);
+						SmartDashboard.putNumber("Right LM Output:", output);
+
 					}
 					
 				});
     	rightController.setAbsoluteTolerance(10);
     	rightController.setContinuous(false);
-    	rightController.enable();
     	targetRate = 0.0;
     	maxRate = 800.0;
 	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new LiftFromInput());
+    	setDefaultCommand(new LiftClipsFromInput());
     }
 	
     public void setTargetRate(double speed) {
@@ -103,6 +114,34 @@ public class LiftMechanism extends Subsystem {
     public void setSpeed(double speed) {
     	rightBottomLiftTalon.set(speed);
     	leftBottomLiftTalon.set(speed);
+    }
+    
+    public void setP(double p) {
+    	this.p = p;
+    	leftController.setPID(p, i, d);
+    	rightController.setPID(p, i, d);
+    }
+    
+    public void setI(double i) {
+    	this.i = i;
+    	leftController.setPID(p, i, d);
+    	rightController.setPID(p, i, d);
+    }
+    
+    public void setD(double d) {
+    	this.d = d;
+    	leftController.setPID(p, i, d);
+    	rightController.setPID(p, i, d);
+    }
+    
+    public void resetPIDControllers() {
+    	leftController.reset();
+    	rightController.reset();
+    }
+    
+    public void enablePIDControllers() {
+    	leftController.enable();
+    	rightController.enable();
     }
     
     public boolean lowLimitReached() {

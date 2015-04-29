@@ -4,8 +4,8 @@ import org.usfirst.frc.team3674.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LiftFromPresets extends Command {
-	
+public class LiftContainerClawFromPresets extends Command {
+
 	private double init_speed;
 	private double init_endMarker;
 	private int init_stepCount;
@@ -13,8 +13,8 @@ public class LiftFromPresets extends Command {
 	private double endMarker;
 	private int stepCount;
 	
-    public LiftFromPresets(double speed, double seconds) {
-        requires(Robot.liftMechanism);
+    public LiftContainerClawFromPresets(double speed, double seconds) {
+        requires(Robot.containerClaw);
         this.init_speed = speed;
         this.init_endMarker = seconds * 50.0;
         this.init_stepCount = 0;
@@ -27,17 +27,16 @@ public class LiftFromPresets extends Command {
     }
 
     protected void execute() {
-    	Robot.liftMechanism.setTargetRate(speed);
+    	Robot.containerClaw.setSpeed(speed);
     	if (endMarker > 0.0) stepCount++;
     }
 
     protected boolean isFinished() {
-        return (Robot.liftMechanism.highLimitReached() && speed < 0) || (Robot.liftMechanism.lowLimitReached() && speed > 0)
-        		|| speed == 0.0 || (stepCount > endMarker && endMarker >= 0.0);
+    	return speed == 0.0 || init_endMarker < 0.0 || (stepCount > endMarker && endMarker >= 0.0);
     }
 
     protected void end() {
-    	Robot.liftMechanism.setTargetRate(0.0);
+    	Robot.containerClaw.setSpeed(0.0);
     }
 
     protected void interrupted() {
